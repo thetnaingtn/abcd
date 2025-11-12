@@ -4,9 +4,9 @@ metadata:
   name: bgdk-app
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: myalias=quay.io/rhdevelopers/bgd
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:openshift-gitops/git-creds
-    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/image-list: myalias=ghcr.io/thetnaingtn/grpc-course/hello-server:v0.1.0
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: grpc-course
 spec:
   destination:
     namespace: bgdk
@@ -14,7 +14,7 @@ spec:
   project: default
   source:
     path: ch07/bgdui/bgdk
-    repoURL: https://github.com/gitops-cookbook/gitops-cookbook-sc.git
-    targetRevision: main
+    repoURL: https://github.com/thetnaingtn/gitops-cookbook-sc.git
+    targetRevision: grpc-course
   syncPolicy:
     automated: {}
