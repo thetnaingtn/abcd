@@ -1,20 +1,37 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
 metadata:
-  name: bgdk-app
+  name: production-updater
   namespace: argocd
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: myalias=ghcr.io/thetnaingtn/grpc-course/hello-server:v0.1.0
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
-    argocd-image-updater.argoproj.io/git-branch: grpc-course
 spec:
-  destination:
-    namespace: bgdk
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: ch07/bgdui/bgdk
-    repoURL: https://github.com/thetnaingtn/gitops-cookbook-sc.git
-    targetRevision: grpc-course
-  syncPolicy:
-    automated: {}
+  # Argo CD Applications live here
+  namespace: argocd
+
+  # Global defaults
+  commonUpdateSettings:
+    updateStrategy: "semver"
+
+  # Global write-back config: use Git + a secret for credentials
+  writeBackConfig:
+    method: "git:secret:argocd/git-creds"
+
+  applicationRefs:
+    - namePattern: "bgd-app"
+
+      # Per-app defaults
+      commonUpdateSettings:
+        pullSecret: github-packages-secret
+
+      # Per-app Git config (no 'method' here, so it reuses the global one above)
+      writeBackConfig:
+        gitConfig:
+          repository: "https://github.com/thetnaingtn/gitops-cookbook-sc.git"
+          branch: "grpc-course"
+          # Kustomize dir to update inside the repo
+          writeBackTarget: "kustomization:ch07/bgdui/bgdk"
+
+      images:
+        - alias: "grpc-api"
+          imageName: "ghcr.io/thetnaingtn/grpc-course/hello-server"
+          commonUpdateSettings:
+            allowTags: "regexp:^v[0-9]+\\.[0-9]+\\.[0-9]+-prod$"

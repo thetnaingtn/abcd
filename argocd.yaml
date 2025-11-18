@@ -5,13 +5,13 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: bgd
+    namespace: bgdk
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ch07/bgd
+    path: ch07/bgdui/bgdk
     repoURL: https://github.com/thetnaingtn/gitops-cookbook-sc
-    targetRevision: main
+    targetRevision: grpc-course
   syncPolicy:
     automated:
       prune: true
