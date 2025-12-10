@@ -1,0 +1,9 @@
+apiVersion: core.cnrm.cloud.google.com/v1beta1
+kind: ConfigConnectorContext
+metadata:
+  # you need one ConfigConnectorContext per namespace
+  name: configconnectorcontext.core.cnrm.cloud.google.com
+  namespace: config-control
+spec:
+  googleServiceAccount: "argocd-cloudrun@qwiklabs-gcp-04-9756e44cdbc0.iam.gserviceaccount.com"
+  stateIntoSpec: Absent
