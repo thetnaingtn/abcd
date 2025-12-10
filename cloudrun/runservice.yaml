@@ -4,13 +4,13 @@ metadata:
   name: dead-simple
   namespace: config-control # namespace that KCC uses for your project
 spec:
-  location: us-east4 # change if needed
+  location: us-west1 # change if needed
   ingress: INGRESS_TRAFFIC_ALL
   projectRef: 
-    external: projects/qwiklabs-gcp-04-9756e44cdbc0
+    external: projects/qwiklabs-gcp-03-d1e800cf070a
   template:
     containers:
-      - image: us-east4-docker.pkg.dev/qwiklabs-gcp-04-9756e44cdbc0/argocd-cloudrun/dead-simple:v0.2.0
+      - image: us-west1-docker.pkg.dev/qwiklabs-gcp-03-d1e800cf070a/argocd-cloudrun/dead-simple:v0.1.0
   traffic:
     - type: TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST
       percent: 100
