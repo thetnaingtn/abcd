@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-cloudrun
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:thetnaingtn/abcd.git
+    targetRevision: main
+    path: config-connector # where kustomization.yaml lives
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: config-control
+  syncPolicy:
+    automated: {}
