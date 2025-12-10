@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: git@github.com:thetnaingtn/abcd.git
     targetRevision: main
-    path: config-connector # where kustomization.yaml lives
+    path: config-control # where kustomization.yaml lives
   destination:
     server: https://kubernetes.default.svc
     namespace: config-control

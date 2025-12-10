@@ -6,9 +6,11 @@ metadata:
 spec:
   location: us-east4 # change if needed
   ingress: INGRESS_TRAFFIC_ALL
+  projectRef: 
+    external: projects/qwiklabs-gcp-04-9756e44cdbc0
   template:
     containers:
-      - image: ghcr.io/thetnaingtn/grpc-course/hello-server:v0.1.4
+      - image: us-east4-docker.pkg.dev/qwiklabs-gcp-04-9756e44cdbc0/argocd-cloudrun/dead-simple:v0.2.0
   traffic:
     - type: TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST
       percent: 100
