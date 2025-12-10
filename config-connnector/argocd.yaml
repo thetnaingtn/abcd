@@ -6,11 +6,14 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:thetnaingtn/abcd.git
+    repoURL: https://github.com/thetnaingtn/abcd.git
     targetRevision: main
     path: cloudrun # where kustomization.yaml lives
   destination:
     server: https://kubernetes.default.svc
     namespace: config-control
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
+
