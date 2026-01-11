@@ -10,7 +10,7 @@ spec:
     external: projects/qwiklabs-gcp-02-a0a92f104fc4
   template:
     containers:
-      - image: us-west1-docker.pkg.dev/qwiklabs-gcp-02-a0a92f104fc4/argocd-cloudrun/dead-simple:v0.1.0
+      - image: us-west1-docker.pkg.dev/qwiklabs-gcp-02-a0a92f104fc4/argocd-cloudrun/dead-simple:v0.2.0
   traffic:
     - type: TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST
       percent: 100
