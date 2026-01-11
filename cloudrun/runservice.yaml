@@ -2,15 +2,15 @@ apiVersion: run.cnrm.cloud.google.com/v1beta1
 kind: RunService
 metadata:
   name: dead-simple
-  namespace: config-control # namespace that KCC uses for your project
+  namespace: config-connector # namespace that KCC uses for your project
 spec:
   location: us-west1 # change if needed
   ingress: INGRESS_TRAFFIC_ALL
   projectRef: 
-    external: projects/qwiklabs-gcp-03-d1e800cf070a
+    external: projects/qwiklabs-gcp-02-a0a92f104fc4
   template:
     containers:
-      - image: us-west1-docker.pkg.dev/qwiklabs-gcp-03-d1e800cf070a/argocd-cloudrun/dead-simple:v0.3.0
+      - image: us-west1-docker.pkg.dev/qwiklabs-gcp-02-a0a92f104fc4/argocd-cloudrun/dead-simple:v0.1.0
   traffic:
     - type: TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST
       percent: 100
